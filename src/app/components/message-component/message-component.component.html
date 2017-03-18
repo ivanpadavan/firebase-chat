@@ -1,0 +1,19 @@
+<div>
+
+  <div *ngIf="me == false" style="float: left" class="msg them">
+      <div>
+        <span *ngIf="text" [innerHtml]="text"  class="msg_text"></span>
+        <img *ngIf="imageURL" [src]="imageURL" class="msg_text" />
+      </div>
+      <span class="msg_timestamp" [innerHtml]="date | date : 'medium'"></span>
+  </div>
+
+  <div *ngIf="me == true" style="float: right" class="msg me">
+    <div>
+      <span *ngIf="text" [innerHtml]="text"  class="msg_text"></span>
+      <img *ngIf="imageURL" [src]="imageURL" class="msg_text" />
+    </div>
+    <span class="msg_timestamp" [innerHtml]="date | date : 'medium'"></span>
+  </div>
+
+</div>
