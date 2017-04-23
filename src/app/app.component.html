@@ -2,7 +2,8 @@
 <ul class="nav nav-tabs" role="tablist" style="height: 42px">
   <li *ngFor="let user of users$ | async | keys; let i = index"
       [routerLink]="['./chat',user]" routerLinkActive="active" style="cursor: pointer">
-    <a [innerHtml]="(users$ | async)[user].name"></a>
+    <!--<a [innerHtml]="(users$ | async)[user].name"></a>-->
+    <a [innerHtml]="i+1"></a>
   </li>
 </ul>
 <!-- TAB CONTENT -->

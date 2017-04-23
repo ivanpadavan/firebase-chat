@@ -6,7 +6,7 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import {AngularFireModule, AuthProviders, AuthMethods} from "angularfire2";
 import {KeysPipe} from "./pipes/keys.pipe";
-import { MessageComponentComponent } from './components/message-component/message-component.component';
+import { MessageComponent } from './components/message-component/message.component';
 import {RouterModule, Route} from "@angular/router";
 import {ChatComponent} from "./components/chat.component";
 
@@ -32,7 +32,7 @@ const routes: Route[] = [
     AppComponent,
     KeysPipe,
     ChatComponent,
-    MessageComponentComponent,
+    MessageComponent,
   ],
   imports: [
     BrowserModule,

@@ -4,11 +4,16 @@
   margin-bottom: 20px;
 }
 
+.msg_text {
+  width: 100%;
+  max-width: 300px;
+  text-align: center;
+}
+
 .me .msg_text {
   background-color: #30A9FF;
   color: white;
   padding: 8px;
-  margin-left: 40px;
   border-radius: 15px;
 
 }
@@ -18,25 +23,22 @@
   color: #333;
   padding: 7px;
   border-radius: 15px;
-  margin-right: 40px;
 }
 
 .authorimg {
-  margin: 0px 5px 5px 5px;
+  margin: 0 5px 5px 5px;
   width: 30px;
   height: 30px;
   border-radius: 15px;
 }
 
-.them .msg_timestamp {
+.msg_timestamp {
   color: gray;
   font-size: 11px;
-  margin-left: 0px;
+  margin: 0 12px;
 }
 
 .me .msg_timestamp {
-  color: gray;
-  font-size: 11px;
-  margin-right: 0px;
   text-align: right;
+  float: right;
 }

@@ -13,10 +13,7 @@ export class AppComponent implements OnInit {
   constructor(private af: AngularFire) {}
 
   ngOnInit() {
-    this.af.auth.login({
-      email: 'asd@asd.asd',
-      password: 'qweasdzxc'
-    });
+    this.af.auth.login();
     this.users$ = this.af.database.object('/users');
   }
 }
