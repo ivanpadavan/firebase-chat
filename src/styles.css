@@ -1,22 +1,8 @@
-html, body, app-root, .inner_flex {
+app-root {
   height: 100%;
-}
-.inner_flex {
-  display: flex;
 }
 
 app-root {
   display: flex;
   flex-direction: column;
-}
-.tab-content {
-  flex-grow: 1;
-  height: calc(100% - 72px);
-  overflow: auto;
-}
-
-.close-chat {
-  top: -10px;
-  left: 12px;
-  cursor: pointer;
 }

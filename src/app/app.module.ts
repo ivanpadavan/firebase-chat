@@ -9,6 +9,7 @@ import {KeysPipe} from "./pipes/keys.pipe";
 import { MessageComponent } from './components/message-component/message.component';
 import {RouterModule, Route} from "@angular/router";
 import {ChatComponent} from "./components/chat.component";
+import {HashLocationStrategy, LocationStrategy} from "@angular/common";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDEFJPpyGALNqn4quypS4Wfd4J43IxnNdI",
@@ -41,7 +42,12 @@ const routes: Route[] = [
     HttpModule,
     AngularFireModule.initializeApp(firebaseConfig, firebaseAuthConfig),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

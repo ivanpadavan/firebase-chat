@@ -13,7 +13,7 @@ interface openedChat {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  uid: string;
+  showSidebar = false;
   newMessage: string = '';
   users$: FirebaseObjectObservable<any>;
   openedChats: openedChat[] = [];
