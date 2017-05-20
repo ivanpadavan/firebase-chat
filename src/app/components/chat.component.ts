@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {AngularFire, FirebaseObjectObservable} from "angularfire2";
+import {AngularFire, FirebaseListObservable, FirebaseObjectObservable} from "angularfire2";
 import {Http, RequestOptions, Headers} from "@angular/http";
 
 @Component({
@@ -8,11 +8,11 @@ import {Http, RequestOptions, Headers} from "@angular/http";
     selector: 'chat',
     template: `
   <div style="height: calc(100% - 30px); overflow-y: auto" id="scrollable">
-        <div *ngFor="let message of chat$ | async | keys">
-          <message [me]="(chat$ | async)[message].name == 'operator'"
-                   [text]="(chat$ | async)[message].text"
-                   [imageURL]="(chat$ | async)[message].imageURL"
-                   [date]="(chat$ | async)[message].date"></message>
+        <div *ngFor="let message of chat$ | async">
+          <message [me]="message.name == 'operator'"
+                   [text]="message.text"
+                   [imageURL]="message.imageURL"
+                   [date]="message.date"></message>
           <div style="clear: both"></div>
         </div>
       </div>
@@ -25,18 +25,23 @@ import {Http, RequestOptions, Headers} from "@angular/http";
 export class ChatComponent implements OnInit {
   id: string;
   newMessage = '';
-  chat$: FirebaseObjectObservable<any>;
+  chat$: FirebaseListObservable<any>;
     constructor(private route: ActivatedRoute, private af: AngularFire, private http: Http) { }
 
     ngOnInit() {
       this.route.params.subscribe((params) => {
         this.id = params['id'];
-        this.chat$ = this.af.database.object(`/messages/${this.id}`);
+        this.chat$ = this.af.database.list(`/messages/${this.id}`, {
+          query: {
+            limitToLast: 100,
+            orderByChild: 'date'
+          }
+        });
       });
     }
   send() {
     if (!this.newMessage.length) return;
-    this.af.database.list(`/messages/${this.id}`).push({name: 'operator', text: this.newMessage, date: (new Date).toISOString()})
+    this.af.database.list(`/messages/${this.id}`).push({name: 'operator', text: this.newMessage, date: (new Date).toISOString()});
 
     this.af.database.object(`users/${this.id}/pushToken`).subscribe((token) => {
       this.http.post(`https://fcm.googleapis.com/fcm/send`, {
