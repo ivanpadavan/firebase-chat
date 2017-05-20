@@ -19,7 +19,7 @@ import {Http, RequestOptions, Headers} from "@angular/http";
 
     <div style="display: flex; height: 30px">
       <input type="text" style="flex-grow: 1" [(ngModel)]="newMessage" (keyup.enter)="send()">
-      <button class="btn btn-primary" style="border-radius: 0" (click)="send()" [disabled]="!newMessage">Отправить</button>
+      <button class="btn btn-primary" style="border-radius: 0; line-height: 1;" (click)="send()" [disabled]="!newMessage">Отправить</button>
     </div>`
 })
 export class ChatComponent implements OnInit {
