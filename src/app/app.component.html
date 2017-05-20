@@ -1,13 +1,35 @@
 <!-- TAB NAVIGATION -->
-<ul class="nav nav-tabs" role="tablist" style="height: 42px">
-  <li *ngFor="let user of users$ | async | keys; let i = index"
-      [routerLink]="['./chat',user]" routerLinkActive="active" style="cursor: pointer">
-    <!--<a [innerHtml]="(users$ | async)[user].name"></a>-->
-    <a [innerHtml]="i+1"></a>
-  </li>
-</ul>
-<!-- TAB CONTENT -->
-<div style="height: calc(100% - 42px)">
-  <router-outlet></router-outlet>
+<div class="inner_flex">
+  <div style="flex-grow: 1">
+    <ul class="nav nav-tabs" role="tablist" style="height: 42px">
+      <li *ngFor="let user of openedChats; let i = index"
+          [routerLink]="['./chat',user.id]" routerLinkActive="active" style="cursor: pointer">
+        <!--<a [innerHtml]="(users$ | async)[user].name"></a>-->
+        <a>
+          {{user.name}}
+          <span class="glyphicon glyphicon-remove close-chat"
+          (click)="closeChat(user, i)"
+          ></span>
+        </a>
+
+      </li>
+    </ul>
+    <!-- TAB CONTENT -->
+    <div style="height: calc(100% - 42px)">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  <div class="sidebar">
+    <label for="toggle" class="toggle_label"></label>
+    <input type="checkbox" class="toggle" id="toggle">
+    <ul class="nav nav-pills nav-stacked">
+      <li *ngFor="let user of users$ | async | keys; let i = index"
+          style="cursor: pointer"
+          (click)="openChat(user, i)">
+        <a [innerHtml]="'Водитель №'+(i+1)"></a>
+      </li>
+    </ul>
+
+  </div>
 </div>
 

@@ -1,5 +1,8 @@
-html, body, app-root {
+html, body, app-root, .inner_flex {
   height: 100%;
+}
+.inner_flex {
+  display: flex;
 }
 
 app-root {
@@ -10,4 +13,10 @@ app-root {
   flex-grow: 1;
   height: calc(100% - 72px);
   overflow: auto;
+}
+
+.close-chat {
+  top: -10px;
+  left: 12px;
+  cursor: pointer;
 }

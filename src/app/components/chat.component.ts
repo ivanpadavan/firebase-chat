@@ -8,7 +8,6 @@ import {Http, RequestOptions, Headers} from "@angular/http";
     selector: 'chat',
     template: `
   <div style="height: calc(100% - 30px); overflow-y: auto" id="scrollable">
-      <h2>Chat</h2>
         <div *ngFor="let message of chat$ | async | keys">
           <message [me]="(chat$ | async)[message].name == 'operator'"
                    [text]="(chat$ | async)[message].text"
@@ -20,7 +19,7 @@ import {Http, RequestOptions, Headers} from "@angular/http";
 
     <div style="display: flex; height: 30px">
       <input type="text" style="flex-grow: 1" [(ngModel)]="newMessage" (keyup.enter)="send()">
-      <button class="btn btn-primary" (click)="send()" [disabled]="!newMessage">Send</button>
+      <button class="btn btn-primary" style="border-radius: 0" (click)="send()" [disabled]="!newMessage">Отправить</button>
     </div>`
 })
 export class ChatComponent implements OnInit {
@@ -36,6 +35,7 @@ export class ChatComponent implements OnInit {
       });
     }
   send() {
+    if (!this.newMessage.length) return;
     this.af.database.list(`/messages/${this.id}`).push({name: 'operator', text: this.newMessage, date: (new Date).toISOString()})
 
     this.af.database.object(`users/${this.id}/pushToken`).subscribe((token) => {

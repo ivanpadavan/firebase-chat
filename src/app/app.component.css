@@ -1,0 +1,36 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid #ddd;
+  height: 100%;
+}
+
+.toggle {
+  visibility: hidden;
+  background-color: rgba(0, 0, 0, 0);
+}
+.toggle_label {
+  font-size: 40px;
+  cursor: pointer;
+  color: #333;
+  text-align: right;
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.toggle_label:after {
+  content: "\e236";
+}
+
+.nav-pills {
+  display: none;
+  overflow: auto;
+}
+
+.toggle:checked ~ .nav-pills {
+  display: block;
+}
