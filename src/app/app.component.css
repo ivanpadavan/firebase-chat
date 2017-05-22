@@ -72,7 +72,6 @@ li.active a, .tab-content {
 
 .nav-pills>li>a, .nav-tabs>li>a {
   border-radius: 0;
-  border-top-color: transparent;
   /*color: #fafafa;*/
 }
 .nav-pills>li>a:hover {
