@@ -2,8 +2,9 @@
     <ul class="nav nav-tabs" role="tablist">
 
       <li *ngFor="let user of openedChats; let i = index"
-          [routerLink]="['./chat', user.id]" routerLinkActive="active" style="cursor: pointer">
-        <!--<a [innerHtml]="(users$ | async)[user].name"></a>-->
+          [ngClass]="{'active': user.id === id}"
+          (click)="id = user.id"
+          style="cursor: pointer">
         <a>
           {{user.name}}
           <span class="glyphicon glyphicon-remove close-chat"
@@ -18,7 +19,7 @@
     <!-- TAB CONTENT -->
     <div class="tab-content">
       <div style="flex-grow: 1; height: 100%" (click)="showSidebar = false">
-        <router-outlet></router-outlet>
+        <chat *ngIf="id" [id]="id"></chat>
       </div>
       <div class="sidebar" [ngClass]="{'opened': showSidebar, 'closed': !showSidebar}">
         <ul class="nav nav-pills nav-stacked" >

@@ -1,13 +1,12 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import {BrowserModule} from "@angular/platform-browser";
+import {NgModule} from "@angular/core";
+import {FormsModule} from "@angular/forms";
+import {HttpModule} from "@angular/http";
 
-import { AppComponent } from './app.component';
-import {AngularFireModule, AuthProviders, AuthMethods} from "angularfire2";
+import {AppComponent} from "./app.component";
+import {AngularFireModule, AuthMethods, AuthProviders} from "angularfire2";
 import {KeysPipe} from "./pipes/keys.pipe";
-import { MessageComponent } from './components/message-component/message.component';
-import {RouterModule, Route} from "@angular/router";
+import {MessageComponent} from "./components/message-component/message.component";
 import {ChatComponent} from "./components/chat.component";
 import {HashLocationStrategy, LocationStrategy} from "@angular/common";
 
@@ -22,11 +21,7 @@ const firebaseConfig = {
 const firebaseAuthConfig = {
   provider: AuthProviders.Password,
   method: AuthMethods.Password,
-}
-
-const routes: Route[] = [
-  {path: "chat/:id", component: ChatComponent}
-];
+};
 
 @NgModule({
   declarations: [
@@ -38,7 +33,6 @@ const routes: Route[] = [
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(routes),
     HttpModule,
     AngularFireModule.initializeApp(firebaseConfig, firebaseAuthConfig),
   ],

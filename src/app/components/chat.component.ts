@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import {AngularFire, FirebaseListObservable, FirebaseObjectObservable} from "angularfire2";
-import {Http, RequestOptions, Headers} from "@angular/http";
+import {Component, Input, OnChanges} from "@angular/core";
+import {AngularFire, FirebaseListObservable} from "angularfire2";
+import {Headers, Http, RequestOptions} from "@angular/http";
 
 @Component({
     moduleId: module.id,
@@ -22,22 +21,19 @@ import {Http, RequestOptions, Headers} from "@angular/http";
       <button class="btn btn-primary" style="border-radius: 0; line-height: 1;" (click)="send()" [disabled]="!newMessage">Отправить</button>
     </div>`
 })
-export class ChatComponent implements OnInit {
-  id: string;
+export class ChatComponent implements OnChanges {
+  @Input() id: string;
   newMessage = '';
   chat$: FirebaseListObservable<any>;
-    constructor(private route: ActivatedRoute, private af: AngularFire, private http: Http) { }
+    constructor(private af: AngularFire, private http: Http) { }
 
-    ngOnInit() {
-      this.route.params.subscribe((params) => {
-        this.id = params['id'];
+    ngOnChanges() {
         this.chat$ = this.af.database.list(`/messages/${this.id}`, {
           query: {
             limitToLast: 100,
             orderByChild: 'date'
           }
         });
-      });
     }
   send() {
     if (!this.newMessage.length) return;

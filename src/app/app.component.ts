@@ -1,8 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {AngularFire, FirebaseObjectObservable, FirebaseListObservable} from "angularfire2";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Component, OnInit} from "@angular/core";
+import {AngularFire, FirebaseObjectObservable} from "angularfire2";
 import {Http} from "@angular/http";
-import {isNullOrUndefined} from "util";
 
 interface openedChat {
   name: string;
@@ -37,14 +35,12 @@ class Driver {
 })
 export class AppComponent implements OnInit {
   showSidebar = false;
-  newMessage: string = '';
+  id: string = '';
   users$: FirebaseObjectObservable<any>;
   openedChats: openedChat[] = [];
   drivers: Driver[] = [];
   constructor(
     private af: AngularFire,
-    private router: Router,
-    private route: ActivatedRoute,
     private http: Http
   ) {}
 
@@ -64,23 +60,21 @@ export class AppComponent implements OnInit {
     if (!this.openedChats.find((value) => value.id === user)) {
       this.openedChats.push({id: user, name: driver.fullName.length ? driver.fullName : `Водитель № ${index+1}`});
     }
-    this.router.navigate(['/chat', user]);
+    this.id = user;
   }
   closeChat(user: openedChat, index) {
-    let url:any = this.router.url.split('/');
-    url = url[url.length-1];
     this.openedChats.splice(index, 1);
 
-    if (url === user.id) {
+    if (this.id === user.id) {
       const len = this.openedChats.length;
 
       if (len === 0) {
-        this.router.navigate(['/']) };
-
-      len === index ?
-        this.router.navigate(['/chat', this.openedChats[index-1].id]) :
-        this.router.navigate(['/chat', this.openedChats[index].id])
-    }
+        this.id = '';
+      }
+      this.id = len === index ?
+         this.openedChats[index-1].id :
+         this.openedChats[index].id;
+  }
   }
   getName(user, index) {
     const driver = this.drivers.filter(x => x.token === user)[0];
