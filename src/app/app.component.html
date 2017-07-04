@@ -1,11 +1,11 @@
 <!-- TAB NAVIGATION -->
     <ul class="nav nav-tabs" role="tablist">
 
-      <li *ngFor="let user of openedChats; let i = index"
+      <li *ngFor="let user of chatService.openedChats; let i = index"
           [ngClass]="{'active': user.id === id}"
           (click)="id = user.id"
           style="cursor: pointer">
-        <a>
+        <a newMessage [id]="user.id">
           {{user.name}}
           <span class="glyphicon glyphicon-remove close-chat"
           (click)="closeChat(user, i)"
@@ -23,10 +23,10 @@
       </div>
       <div class="sidebar" [ngClass]="{'opened': showSidebar, 'closed': !showSidebar}">
         <ul class="nav nav-pills nav-stacked" >
-          <li *ngFor="let user of users$ | async | keys; let i = index"
+          <li *ngFor="let user of users$ | async | keys"
               style="cursor: pointer"
-              (click)="openChat(user, i)">
-            <a [innerHtml]="getName(user, i)"></a>
+              (click)="openChat(user)">
+            <a newMessage [id]="user" [playSound]="true" [innerHtml]="getName(user)"></a>
           </li>
         </ul>
       </div>

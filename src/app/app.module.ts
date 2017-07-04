@@ -9,6 +9,8 @@ import {KeysPipe} from "./pipes/keys.pipe";
 import {MessageComponent} from "./components/message-component/message.component";
 import {ChatComponent} from "./components/chat.component";
 import {HashLocationStrategy, LocationStrategy} from "@angular/common";
+import { NewMessageDirective } from './directives/new-message.directive';
+import {OpenChatService} from './services/open-chat.service';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDEFJPpyGALNqn4quypS4Wfd4J43IxnNdI",
@@ -29,6 +31,7 @@ const firebaseAuthConfig = {
     KeysPipe,
     ChatComponent,
     MessageComponent,
+    NewMessageDirective,
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,8 @@ const firebaseAuthConfig = {
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy,
-    }
+    },
+    OpenChatService,
   ],
   bootstrap: [AppComponent]
 })

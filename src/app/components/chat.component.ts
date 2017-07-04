@@ -34,6 +34,12 @@ export class ChatComponent implements OnChanges {
             orderByChild: 'date'
           }
         });
+
+        this.chat$.subscribe((res) => {
+          this.af.database.object(`users/${this.id}`).update({
+            lastOpened: (new Date).toISOString()
+          })
+        });
     }
   send() {
     if (!this.newMessage.length) return;
