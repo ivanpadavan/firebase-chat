@@ -1,6 +1,5 @@
-import {Component, OnInit} from "@angular/core";
-import {AngularFire, FirebaseObjectObservable} from "angularfire2";
-import {Http} from "@angular/http";
+import {Component, OnInit} from '@angular/core';
+import {AngularFire, FirebaseObjectObservable} from 'angularfire2';
 import {OpenChatService} from './services/open-chat.service';
 
 export interface openedChat {
@@ -35,7 +34,7 @@ export class Driver {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  showSidebar = false;
+  showSidebar = true;
   id: string = '';
   users$: FirebaseObjectObservable<any>;
 

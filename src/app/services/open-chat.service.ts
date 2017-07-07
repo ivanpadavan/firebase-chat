@@ -10,7 +10,9 @@ export class OpenChatService {
     this.http
       .get('http://ovz1.tesey.1l0r1.vps.myjino.ru/cars')
       .subscribe(
-        (res) => this.drivers = res.json().map(x => Object.assign(new Driver(), x))
+        (res) => {
+          this.drivers = res.json().map(x => Object.assign(new Driver(), x))
+        }
       )
   }
 
