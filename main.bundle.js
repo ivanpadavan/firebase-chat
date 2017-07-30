@@ -411,14 +411,15 @@ var ChatComponent = (function () {
         this.af.database.object("users/" + this.id + "/pushToken").subscribe(function (token) {
             _this.http.post("https://fcm.googleapis.com/fcm/send", {
                 to: token.$value,
-                "notification": { title: "New msg",
+                "notification": {
                     body: _this.newMessage,
-                    sound: 'default' }
+                    sound: 'default'
+                }
             }, new __WEBPACK_IMPORTED_MODULE_2__angular_http__["c" /* RequestOptions */]({ headers: new __WEBPACK_IMPORTED_MODULE_2__angular_http__["d" /* Headers */]({
                     'Content-Type': 'application/json',
                     'Authorization': "key=" + (window.location.host === 'transport.poseidongroup.ru' ?
-                        'AAAAj2Q_2oQ:APA91bEFo5fq5aSoyfy2A_jJ8y_imc7sUcRGBViemnaqITQ24iUE7dJ3s0_oZ_FtKQcNFeeDcyO2mr9DLzEra3Ozx6gDFYJ110FlYVNxSiPiPfnJIyGtc8U_PBCUFgVqR_xyrU6zAHr8' :
-                        'AAAAdBzx9RA:APA91bEYwKUSkAGnPAbhGQqy5d-DDVwfnUuB3BU7zkwwnFQqmMuHxbTscPiZHU5jfumbrkKbegAXFz3xMLb5JMlp0YH32lMwXp0aohzSWfV3ZYg_bIhw9Bat9TeYv1TMoc1a27zEOGIh')
+                        'AAAAdBzx9RA:APA91bEYwKUSkAGnPAbhGQqy5d-DDVwfnUuB3BU7zkwwnFQqmMuHxbTscPiZHU5jfumbrkKbegAXFz3xMLb5JMlp0YH32lMwXp0aohzSWfV3ZYg_bIhw9Bat9TeYv1TMoc1a27zEOGIh' :
+                        'AAAAj2Q_2oQ:APA91bEFo5fq5aSoyfy2A_jJ8y_imc7sUcRGBViemnaqITQ24iUE7dJ3s0_oZ_FtKQcNFeeDcyO2mr9DLzEra3Ozx6gDFYJ110FlYVNxSiPiPfnJIyGtc8U_PBCUFgVqR_xyrU6zAHr8')
                 }) })).subscribe(function (res) { return _this.newMessage = ''; });
         });
     };
