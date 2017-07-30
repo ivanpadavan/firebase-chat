@@ -341,7 +341,7 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormsModule */],
                 __WEBPACK_IMPORTED_MODULE_3__angular_http__["a" /* HttpModule */],
-                __WEBPACK_IMPORTED_MODULE_5_angularfire2__["c" /* AngularFireModule */].initializeApp(window.location.host === 'transport.poseidongroup.ru' ? firebaseProdConfig : firebaseTestConfig, firebaseAuthConfig),
+                __WEBPACK_IMPORTED_MODULE_5_angularfire2__["c" /* AngularFireModule */].initializeApp(firebaseTestConfig, firebaseAuthConfig),
             ],
             providers: [
                 {
@@ -417,9 +417,7 @@ var ChatComponent = (function () {
                 }
             }, new __WEBPACK_IMPORTED_MODULE_2__angular_http__["c" /* RequestOptions */]({ headers: new __WEBPACK_IMPORTED_MODULE_2__angular_http__["d" /* Headers */]({
                     'Content-Type': 'application/json',
-                    'Authorization': "key=" + (window.location.host === 'transport.poseidongroup.ru' ?
-                        'AAAAdBzx9RA:APA91bEYwKUSkAGnPAbhGQqy5d-DDVwfnUuB3BU7zkwwnFQqmMuHxbTscPiZHU5jfumbrkKbegAXFz3xMLb5JMlp0YH32lMwXp0aohzSWfV3ZYg_bIhw9Bat9TeYv1TMoc1a27zEOGIh' :
-                        'AAAAj2Q_2oQ:APA91bEFo5fq5aSoyfy2A_jJ8y_imc7sUcRGBViemnaqITQ24iUE7dJ3s0_oZ_FtKQcNFeeDcyO2mr9DLzEra3Ozx6gDFYJ110FlYVNxSiPiPfnJIyGtc8U_PBCUFgVqR_xyrU6zAHr8')
+                    'Authorization': "key=" + 'AAAAj2Q_2oQ:APA91bEFo5fq5aSoyfy2A_jJ8y_imc7sUcRGBViemnaqITQ24iUE7dJ3s0_oZ_FtKQcNFeeDcyO2mr9DLzEra3Ozx6gDFYJ110FlYVNxSiPiPfnJIyGtc8U_PBCUFgVqR_xyrU6zAHr8'
                 }) })).subscribe(function (res) { return _this.newMessage = ''; });
         });
     };
@@ -593,7 +591,7 @@ module.exports = module.exports.toString();
 /***/ 501:
 /***/ (function(module, exports) {
 
-module.exports = "<!-- TAB NAVIGATION -->\n    <ul class=\"nav nav-tabs\" role=\"tablist\">\n\n      <li *ngFor=\"let user of chatService.openedChats; let i = index\"\n          [ngClass]=\"{'active': user.id === id}\"\n          (click)=\"id = user.id\"\n          newMessage [id]=\"user.id\"\n          style=\"float: none; border: 1px #dddddd solid; border-radius: 5px; background-color: white\">\n        <a>\n          {{user.name}}\n          <span class=\"glyphicon glyphicon-remove close-chat\"\n          (click)=\"closeChat(user, i)\"\n          ></span>\n        </a>\n      </li>\n\n      <label for=\"toggle\" class=\"toggle_label\"></label>\n      <input type=\"checkbox\" class=\"toggle\" id=\"toggle\" [(ngModel)]=\"showSidebar\">\n    </ul>\n    <!-- TAB CONTENT -->\n    <div class=\"tab-content\">\n      <div style=\"flex-grow: 1; height: 100%; background-color: white\" (click)=\"showSidebar = false\"\n           [ngStyle]=\"{\n           'z-index': chatService.openedChats?.length ? 2 : 0\n           }\">\n\n        <chat *ngIf=\"id\" [id]=\"id\"></chat>\n      </div>\n      <div class=\"sidebar\" [ngClass]=\"{'opened': showSidebar, 'closed': !showSidebar}\">\n        <ul class=\"nav nav-pills nav-stacked\" >\n          <li *ngFor=\"let user of users$ | async | keys\"\n              style=\"cursor: pointer\"\n              (click)=\"openChat(user)\">\n            <a newMessage [id]=\"user\" [innerHtml]=\"getName(user)\"></a>\n          </li>\n        </ul>\n      </div>\n\n    </div>\n"
+module.exports = "<!-- TAB NAVIGATION -->\n    <ul class=\"nav nav-tabs\" role=\"tablist\">\n\n      <li *ngFor=\"let user of chatService.openedChats; let i = index\"\n          [ngClass]=\"{'active': user.id === id}\"\n          (click)=\"id = user.id\"\n          newMessage [id]=\"user.id\"\n          style=\"float: none; border: 1px #dddddd solid; border-radius: 5px; background-color: white\">\n        <a>\n          {{user.name}}\n          <span class=\"glyphicon glyphicon-remove close-chat\"\n          (click)=\"closeChat(user, i)\"\n          ></span>\n        </a>\n      </li>\n\n      <label for=\"toggle\" class=\"toggle_label\"></label>\n      <input type=\"checkbox\" class=\"toggle\" id=\"toggle\" [(ngModel)]=\"showSidebar\">\n    </ul>\n    <!-- TAB CONTENT -->\n    <div class=\"tab-content\">\n      <div style=\"flex-grow: 1; height: 100%; background-color: white\" (click)=\"showSidebar = false\"\n           [ngStyle]=\"{\n           'z-index': chatService.openedChats?.length ? 2 : 0\n           }\">\n\n        <chat *ngIf=\"id\" [id]=\"id\"></chat>\n      </div>\n      <div class=\"sidebar\" [ngClass]=\"{'opened': showSidebar, 'closed': !showSidebar}\">\n        <ul class=\"nav nav-pills nav-stacked\" >\n          <li *ngFor=\"let user of users$ | async | keys\"\n              style=\"cursor: pointer\"\n              (click)=\"openChat(user)\"\n              newMessage\n              [id]=\"user\">\n            <a [innerHtml]=\"getName(user)\"></a>\n          </li>\n        </ul>\n      </div>\n\n    </div>\n"
 
 /***/ }),
 
